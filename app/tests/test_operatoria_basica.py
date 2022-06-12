@@ -1,6 +1,5 @@
 from unittest import TestCase
-from webbrowser import Opera
-from app.shared.core import get_random_factor
+from shared.core import get_random_factors
 from operatoria.classes import RestaEnteros, SumaEnteros
 from shared.enums import EnumDificulty
 from operatoria.classes import Question

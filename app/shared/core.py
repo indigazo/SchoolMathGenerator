@@ -6,15 +6,13 @@ Enums de uso global, etc.
 # Entrega un numero al azar, le tengo que dar un maximo 
 import glob
 import os
-from shared.enums import EnumDificulty
+from typing import List
+from shared.enums import EnumDificulty as en_dif
 
 
-def get_random_factor(max_size: int) -> int:
-    pass
-
-
-def get_random_factor_by_dificulty(dificultad: EnumDificulty) -> int:
-    pass
+def get_random_factors(n_factors: int, dificulty: en_dif) -> List[int]:
+    """ Obtiene N factores con en_dif dificultad """
+    return [1, 1]   # joke 1 + 1 
 
 
 def create_directory(directorio: str) -> None:

@@ -4,26 +4,18 @@ aqui deberia ir las preguntas, prueba y todos sus metodos
 logica de API se verda en otro lado, despues
 """
 from dataclasses import dataclass
-from typing import List, Tuple
+from typing import List, Protocol, Tuple
 from shared.enums import EnumDificulty
 from shared.enums import EnumDificulty as en_dif, EnumOperation as en_op
 
 #@TODO: Implementar get_random_factors, cambiar a que sea una funcion
 # global en vez de que sea parte de operation
 
+@dataclass
 class Operation():
-    '''
-    Clase base para una operacion
-    get_result()
-    '''
+    """ Clase base para una operacion get_result()"""
     operation_symbol = ""
-
-    def __init__(self, factors: List[int]) -> None:
-        self.factors = factors
-
-    # Posiblemente retornar una lista de factores?
-    # def get_random_factors(self, dificulty: EnumDificulty, n_factors: int) -> List[int]:
-    #     pass
+    factors: List[int]
 
     # Sobreescribir para describir como resolver esa operacion
     def get_result(self) -> int:
@@ -31,20 +23,8 @@ class Operation():
 
 
 class SumaEnteros(Operation):
-    '''
-    Operacion suma N factores:
-        A + B + N... = C
-    '''
     operation_symbol = "+"
-
-    def __init__(self, factors: List[int]) -> None:
-        super().__init__(factors)
-
-    # Para evitar escribir pruebas a mano, se puede obtener un ejercicio
-    # random, usando la dificultad para obtener los factores de la operacion usada
-    # def get_random_factors(self, dificulty: EnumDificulty, n_factors: int) -> List[int]:
-    #     return super().get_random_factors(dificulty, n_factors)
-
+    
     def get_result(self) -> int:
         result = 0
         for factor in self.factors:
@@ -53,15 +33,8 @@ class SumaEnteros(Operation):
 
 
 class RestaEnteros(Operation):
-    '''
-    Operacion Resta N factores:
-        A - B - N... = C
-    '''
     operation_symbol = "-"
-
-    def __init__(self, factors: List[int]) -> None:
-        super().__init__(factors)
-
+    
     def get_random_exercise(self) -> List[int]:
         pass
 
@@ -70,11 +43,11 @@ class RestaEnteros(Operation):
 
 
 class Question():
-    '''
+    """
     Clase que representa una pregunta
     operation : Operation = clase heredada de operacion de la que obtendremos resultado
     factors : int[] = factores que se usaran para calcular la operatoria
-    '''
+    """
     def __init__(self, operation: Operation, dificulty: EnumDificulty) -> None:
         self.operation = operation
         self.dificulty = dificulty
