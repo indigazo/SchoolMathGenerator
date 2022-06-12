@@ -4,7 +4,8 @@ aqui deberia ir las preguntas, prueba y todos sus metodos
 logica de API se verda en otro lado, despues
 """
 from dataclasses import dataclass
-from typing import List, Protocol, Tuple
+from functools import reduce
+from typing import List
 from shared.enums import EnumDificulty
 from shared.enums import EnumDificulty as en_dif, EnumOperation as en_op
 
@@ -26,10 +27,7 @@ class SumaEnteros(Operation):
     operation_symbol = "+"
     
     def get_result(self) -> int:
-        result = 0
-        for factor in self.factors:
-            result += factor
-        return result
+        return reduce(lambda x, y : x + y, self.factors)
 
 
 class RestaEnteros(Operation):

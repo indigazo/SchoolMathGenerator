@@ -9,7 +9,7 @@ Tests de Operatoria: Suma
 '''
 class TestClassesOperatoria_SumaEnteros(TestCase):
     def setUp(self) -> None:
-        self.suma = SumaEnteros(factors=[1,1])
+        self.suma = SumaEnteros(factors=[1, 1])
         self.question = Question(operation=self.suma, dificulty=EnumDificulty.EASY)
 
     def test_get_operation_symbol(self):
@@ -29,8 +29,6 @@ class TestsQuestion_SumaEnteros(TestCase):
 
     def test_str_method(self):
         self.assertEqual(self.question.__str__(), "1 + 1 = 2")
-
-
 
 
 '''
