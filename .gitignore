@@ -1,0 +1,14 @@
+# python
+__pycache__/*
+__pycache__/
+*.ipynb
+
+# venvs and dotfiles
+.vscode/
+.venv/
+settings.ini
+
+# logs 
+media/
+logs/
+*.log
