@@ -32,9 +32,6 @@ class SumaEnteros(Operation):
 
 class RestaEnteros(Operation):
     operation_symbol = "-"
-    
-    def get_random_exercise(self) -> List[int]:
-        pass
 
     def get_result(self) -> int:
         return self.factors[0] - sum(self.factors[1:])
