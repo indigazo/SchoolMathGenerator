@@ -14,27 +14,29 @@ from shared.enums import EnumDificulty as en_dif, EnumOperation as en_op
 
 @dataclass
 class Operation():
-    """ Clase base para una operacion get_result()"""
-    operation_symbol = ""
-    factors: List[int]
-
-    # Sobreescribir para describir como resolver esa operacion
-    def get_result(self) -> int:
+    def get_operation_symbol(self) -> str:
+        """Retorna el simbolo(s) que utiliza esta operacion"""
+        pass
+    
+    def get_result(self, factors) -> int:
+        """Retorna el resultado de la operacion: sobreescribir"""
         pass
 
 
 class SumaEnteros(Operation):
-    operation_symbol = "+"
+    def get_operation_symbol(self) -> str:
+        return "+"
     
-    def get_result(self) -> int:
-        return reduce(lambda x, y : x + y, self.factors)
+    def get_result(self, factors) -> int:
+        return reduce(lambda x, y : x + y, factors)
 
 
 class RestaEnteros(Operation):
-    operation_symbol = "-"
+    def get_operation_symbol(self) -> str:
+        return "-"
 
-    def get_result(self) -> int:
-        return self.factors[0] - sum(self.factors[1:])
+    def get_result(self, factors) -> int:
+        return factors[0] - sum(factors[1:])
 
 
 class Question():
@@ -43,18 +45,26 @@ class Question():
     operation : Operation = clase heredada de operacion de la que obtendremos resultado
     factors : int[] = factores que se usaran para calcular la operatoria
     """
-    def __init__(self, operation: Operation, dificulty: EnumDificulty) -> None:
+    def __init__(self, operation: Operation, dificulty: EnumDificulty, factors: List[int] = []) -> None:
         self.operation = operation
         self.dificulty = dificulty
+        self.factors = factors
+        
+        if len(self.factors) == 0:
+            print("Genera factores random basandote en dificultad!")
 
-    # Cambiada para que print(question) retorne el ejercicio y su respuesta
+
     def __str__(self) -> str:
-        return f"{self.get_question_string()} = {self.operation.get_result()}"
+        """Cambiada para que print(question) retorne el ejercicio y su respuesta """
+        return f"{self.get_question_string()} = {self.operation.get_result(self.factors)}"
 
-    # Deberia retornar {factor} {simbolo} {factor}
+    
     def get_question_string(self) -> str:
-        factors_str = [str(factor) for factor in self.operation.factors]
-        symbol_final = f" {self.operation.operation_symbol} "
+        """ Deberia retornar {factor} {simbolo} {factor} """
+        factors_str = [str(factor) for factor in self.factors]
+        symbol_final = f" {self.operation.get_operation_symbol()} "
         return symbol_final.join(factors_str)
+
+
 
 
