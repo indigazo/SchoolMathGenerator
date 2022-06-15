@@ -2,29 +2,9 @@
 Funciones de uso global
 Enums de uso global, etc.
 '''
-
 # Entrega un numero al azar, le tengo que dar un maximo 
 import glob
 import os
-from typing import List
-from shared.enums import EnumDificulty as en_dif
-
-
-#@TODO: Setup random number generator class?
-# Also maybe move this to classes no? 
-# https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/
-class RandomInts():
-    pass
-
-
-class RandomFloat():
-    pass
-
-
-def get_random_factors(n_factors: int, dificulty: en_dif) -> List[int]:
-    """ Obtiene N factores con en_dif dificultad """
-    return [1, 1]   # joke 1 + 1 
-
 
 def create_directory(directorio: str) -> None:
     """ Crear directorio si este no existe en el disco """

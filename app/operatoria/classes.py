@@ -9,9 +9,15 @@ from typing import List
 from shared.enums import EnumDificulty
 from shared.enums import EnumDificulty as en_dif, EnumOperation as en_op
 
-#@TODO: Implementar get_random_factors, cambiar a que sea una funcion
-# global en vez de que sea parte de operation
+#@TODO: Setup random number generator class?
+# Also maybe move this to classes no? 
+# https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/
+class RandomInts():
+    pass
 
+
+#@TODO: Implementar get_random_factors, cambiar a que sea un metodo
+# de operation en caso de no ingresar factores
 @dataclass
 class Operation():
     def get_operation_symbol(self) -> str:
