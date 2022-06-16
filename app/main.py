@@ -18,6 +18,5 @@ LOG = logger.setup_custom_logger(__name__, 'main_math', 'logs_main_process')
 def main() -> None:
     LOG.info("building main.py...")
 
-
 if __name__ == "__main__":
     main()

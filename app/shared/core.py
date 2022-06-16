@@ -1,8 +1,8 @@
 '''
-Funciones de uso global
-Enums de uso global, etc.
+Funciones, Enums y clases de uso global: 
+La idea de este file es poder convertirlo en un package
+para futuros proyectos, ir agregando aqui todo lo necesario
 '''
-# Entrega un numero al azar, le tengo que dar un maximo 
 import glob
 import os
 
@@ -19,9 +19,7 @@ def create_directory(directorio: str) -> None:
 
 
 def delete_files(patron: str) -> None:
-    """ Elimina un grupo de archivos en un directorio dado un patron ejemplo /hom/user/rodrigo/*.txt """
-
-    # genera la lista de archivos que cumplan con el patron
+    """ Elimina un grupo de archivos en un directorio dado un patron ej: /hom/user/*.txt """
     fileList = glob.glob(patron)
 
     # Recorre la lista y elimina los archivos
@@ -30,4 +28,4 @@ def delete_files(patron: str) -> None:
             os.remove(file)
         except:
             print("Error al eliminar el archivo  : ", file)
-            raise
+     

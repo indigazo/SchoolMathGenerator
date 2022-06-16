@@ -9,13 +9,6 @@ from typing import List
 from shared.enums import EnumDificulty
 from shared.enums import EnumDificulty as en_dif, EnumOperation as en_op
 
-#@TODO: Setup random number generator class?
-# Also maybe move this to classes no? 
-# https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/
-class RandomInts():
-    pass
-
-
 #@TODO: Implementar get_random_factors, cambiar a que sea un metodo
 # de operation en caso de no ingresar factores
 @dataclass
@@ -24,7 +17,7 @@ class Operation():
         """Retorna el simbolo(s) que utiliza esta operacion"""
         pass
     
-    def get_result(self, factors) -> int:
+    def get_result(self, factors: List[int]) -> int:
         """Retorna el resultado de la operacion: sobreescribir"""
         pass
 
@@ -33,7 +26,7 @@ class SumaEnteros(Operation):
     def get_operation_symbol(self) -> str:
         return "+"
     
-    def get_result(self, factors) -> int:
+    def get_result(self, factors: List[int]) -> int:
         return reduce(lambda x, y : x + y, factors)
 
 
@@ -41,8 +34,29 @@ class RestaEnteros(Operation):
     def get_operation_symbol(self) -> str:
         return "-"
 
-    def get_result(self, factors) -> int:
+    def get_result(self, factors: List[int]) -> int:
         return factors[0] - sum(factors[1:])
+
+#@TODO: Setup random number generator class?
+# https://machinelearningmastery.com/how-to-generate-random-numbers-in-python/
+"""
+Recibe el tipo de Operation, numero de factores y opcionalmente la dificultad :
+Debe generar N factores que se le pidan adaptandose a los parametros de la clase
+Operation, por lo que sera necesario implementar la info necesaria para factores
+desde Operation. 
+"""
+class RandomFactorGenerator():
+    
+    def __init__(self, operation: Operation, n_factors: int, dificulty: EnumDificulty = EnumDificulty.EASY) -> None:
+        self.operation = operation
+        self.n_factors = n_factors
+        self.dificulty = dificulty
+
+    def get_random_factors(self):
+        pass
+
+    def get_random_factors_by_dificulty(self):
+        pass
 
 
 class Question():
