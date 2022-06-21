@@ -6,23 +6,25 @@ logica de API se verda en otro lado, despues
 from dataclasses import dataclass
 from functools import reduce
 from typing import List
-from shared.enums import EnumDificulty
-from shared.enums import EnumDificulty as en_dif, EnumOperation as en_op
+from shared.enums import Dificulty
+from shared.enums import Dificulty as en_dif, EnumOperation as en_op
+from abc import ABC, abstractmethod
 
 #@TODO: Implementar get_random_factors, cambiar a que sea un metodo
 # de operation en caso de no ingresar factores
-@dataclass
-class Operation():
+class Operation(ABC):
+    """Abstract class para crear operaciones matematicas"""
+    @abstractmethod
     def get_operation_symbol(self) -> str:
         """Retorna el simbolo(s) que utiliza esta operacion"""
-        pass
     
+    @abstractmethod
     def get_result(self, factors: List[int]) -> int:
         """Retorna el resultado de la operacion: sobreescribir"""
-        pass
+    
 
-
-class SumaEnteros(Operation):
+class Suma(Operation):
+    """Clase para crear una operacion suma"""
     def get_operation_symbol(self) -> str:
         return "+"
     
@@ -30,7 +32,8 @@ class SumaEnteros(Operation):
         return reduce(lambda x, y : x + y, factors)
 
 
-class RestaEnteros(Operation):
+class Resta(Operation):
+    """Clase para crear una operacion resta"""
     def get_operation_symbol(self) -> str:
         return "-"
 
@@ -47,7 +50,7 @@ desde Operation.
 """
 class RandomFactorGenerator():
     
-    def __init__(self, operation: Operation, n_factors: int, dificulty: EnumDificulty = EnumDificulty.EASY) -> None:
+    def __init__(self, operation: Operation, n_factors: int, dificulty: Dificulty = Dificulty.EASY) -> None:
         self.operation = operation
         self.n_factors = n_factors
         self.dificulty = dificulty
@@ -65,13 +68,15 @@ class Question():
     operation : Operation = clase heredada de operacion de la que obtendremos resultado
     factors : int[] = factores que se usaran para calcular la operatoria
     """
-    def __init__(self, operation: Operation, dificulty: EnumDificulty, factors: List[int] = []) -> None:
+    def __init__(self, operation: Operation, dificulty: Dificulty = Dificulty.INTERMEDIATE, factors: List[int] = []) -> None:
         self.operation = operation
         self.dificulty = dificulty
         self.factors = factors
         
+        # Si no recibe factores, retorna 2 factores basandose en la dificultad entregada (INT by default)
         if len(self.factors) == 0:
-            print("Genera factores random basandote en dificultad!")
+            rand = RandomFactorGenerator(self.operation, 2, self.dificulty)
+            self.factors = rand.get_random_factors()
 
 
     def __str__(self) -> str:

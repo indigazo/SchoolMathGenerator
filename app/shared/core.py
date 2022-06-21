@@ -11,21 +11,18 @@ def create_directory(directorio: str) -> None:
     try:
         if not os.path.isdir(directorio):
             os.mkdir(directorio)
-            print (f'Se ha creado correctamente el directorio {directorio}')
+            print(f'Se ha creado correctamente el directorio {directorio}')
 
-    except OSError:
-        print (f'Error al crear el directiorio {directorio}')
-        raise
+    except OSError as ex:
+        print(f'Error al crear el directiorio {directorio}: {ex}')
 
 
 def delete_files(patron: str) -> None:
-    """ Elimina un grupo de archivos en un directorio dado un patron ej: /hom/user/*.txt """
-    fileList = glob.glob(patron)
-
-    # Recorre la lista y elimina los archivos
-    for file in fileList:
+    """ Elimina un grupo de archivos en un directorio dado un patron ej: /home/user/*.txt """
+    file_list = glob.glob(patron)
+    for file in file_list:
         try:
             os.remove(file)
-        except:
+        except OSError:
             print("Error al eliminar el archivo  : ", file)
      
