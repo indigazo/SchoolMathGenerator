@@ -20,8 +20,8 @@ def setup_custom_logger(name: str, log_file_name: str, subfolder: str) -> loggin
     this_log_root_path = os.path.join(LOGGER['LOG_ROOT'], subfolder)    
     core.create_directory(this_log_root_path)
     formatter = logging.Formatter(fmt='%(asctime)s [%(levelname)s][%(name)s] %(message)s')
-    log_date = datetime.datetime.today().strftime('%Y-%m-%d-%H-%M-%S') 
     
+    log_date = datetime.datetime.today().strftime('%Y-%m-%d-%H-%M-%S') 
     log_file = this_log_root_path + f'/{log_file_name}-{log_date}.log'
 
     console_handler = logging.StreamHandler()

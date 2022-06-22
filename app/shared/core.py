@@ -5,7 +5,23 @@ para futuros proyectos, ir agregando aqui todo lo necesario
 '''
 import glob
 import os
+from unittest import TestCase
 
+"""
+Methods
+"""
+
+"""
+Hacky Fixers
+"""
+def pass_test_for_now(test_case: TestCase) -> None:
+    """ Para que un test pase mientras edito o testeo algo """
+    test_case.assertEqual(1, 1)
+
+
+"""
+IO
+"""
 def create_directory(directorio: str) -> None:
     """ Crear directorio si este no existe en el disco """
     try:
